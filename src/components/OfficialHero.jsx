@@ -48,16 +48,13 @@ export function OfficialHero({ onOpenDemoModal }) {
             {/* Main Headline */}
             <h1 className="hero-title">
               <span className="hero-title-main">
-                Accelerate Your<br />
+                Accelerate Your<br className="hero-desktop-br" />
                 Career Growth
               </span>
               <span className="hero-gradient-text">
                 &amp; Upskill Yourself
               </span>
             </h1>
-
-            {/* Mobile Artwork spacer for clean spacing */}
-            <div className="hero-mobile-image-space" aria-hidden="true" />
 
             {/* Subtitle */}
             <p className="hero-lead">
