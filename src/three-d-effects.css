@@ -1,0 +1,730 @@
+/* ==========================================================================
+   SKLASSICS 3D EFFECTS & IMMERSIVE STYLES
+   Hardware-accelerated CSS 3D perspectives, Canvas 3D particle sphere,
+   Holographic foil certificates, and interactive 3D tech cube.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HERO 3D SPHERE STYLES
+   -------------------------------------------------------------------------- */
+.hero-3d-container {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  bottom: 40px;
+  width: min(52%, 580px);
+  height: calc(100% - 40px);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  overflow: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+@media (max-width: 960px) {
+  .hero-3d-container {
+    right: -4%;
+    width: 60%;
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  .hero-3d-hud,
+  .hero-3d-drag-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-3d-container {
+    display: none;
+  }
+}
+
+.hero-3d-container:active {
+  cursor: grabbing;
+}
+
+.hero-3d-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. INTERACTIVE 3D TECH CUBE SECTION
+   -------------------------------------------------------------------------- */
+.tech-cube-section {
+  position: relative;
+  background: linear-gradient(180deg, #faf9fe 0%, #f3f0fa 100%);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .tech-cube-section {
+  background: linear-gradient(180deg, #0d1021 0%, #090b16 100%);
+}
+
+.tech-cube-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.cube-eyebrow-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8257e5;
+  box-shadow: 0 0 8px #8257e5;
+  margin-right: 6px;
+}
+
+.tech-cube-header h2 {
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 800;
+  margin: 12px 0 14px;
+  color: #171633;
+}
+
+[data-theme="dark"] .tech-cube-header h2 {
+  color: #ffffff;
+}
+
+.tech-cube-header h2 span {
+  background: linear-gradient(135deg, #8257e5 0%, #ec4899 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tech-cube-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .tech-cube-header p {
+  color: #9ea4c2;
+}
+
+/* Controls Bar */
+.cube-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(130, 87, 229, 0.15);
+  box-shadow: 0 6px 24px rgba(130, 87, 229, 0.08);
+}
+
+[data-theme="dark"] .cube-controls-bar {
+  background: rgba(21, 25, 52, 0.75);
+  border-color: rgba(130, 87, 229, 0.25);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+}
+
+.cube-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cube-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(130, 87, 229, 0.16);
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+[data-theme="dark"] .cube-nav-pill {
+  background: rgba(29, 35, 72, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+.cube-nav-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.cube-nav-pill.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(130, 87, 229, 0.35);
+}
+
+.cube-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cube-auto-btn,
+.cube-reset-btn {
+  border: 1px solid rgba(130, 87, 229, 0.2);
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #55349e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .cube-auto-btn,
+[data-theme="dark"] .cube-reset-btn {
+  background: rgba(29, 35, 72, 0.9);
+  color: #cbb4f7;
+  border-color: rgba(168, 138, 255, 0.25);
+}
+
+.cube-auto-btn.active {
+  background: rgba(130, 87, 229, 0.14);
+  border-color: #8257e5;
+  color: #8257e5;
+}
+
+/* 3D Stage Grid */
+.tech-cube-stage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .tech-cube-stage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Viewport with CSS 3D Perspective */
+.cube-viewport {
+  position: relative;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 50%, rgba(130, 87, 229, 0.12) 0%, transparent 70%);
+}
+
+.cube-viewport:active {
+  cursor: grabbing;
+}
+
+.cube-scene {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  transform-style: preserve-3d;
+}
+
+.cube-object {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.1s linear;
+}
+
+/* Individual 3D Cube Faces */
+.cube-face {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 22px;
+  backface-visibility: visible;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* 3D Space Transformations for 6 Faces (Radius = 120px) */
+.cube-face-front {
+  transform: translateZ(120px);
+}
+.cube-face-back {
+  transform: rotateY(180deg) translateZ(120px);
+}
+.cube-face-right {
+  transform: rotateY(90deg) translateZ(120px);
+}
+.cube-face-left {
+  transform: rotateY(-90deg) translateZ(120px);
+}
+.cube-face-top {
+  transform: rotateX(90deg) translateZ(120px);
+}
+.cube-face-bottom {
+  transform: rotateX(-90deg) translateZ(120px);
+}
+
+.cube-face-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--face-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), inset 0 0 20px rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+  transform-style: preserve-3d;
+}
+
+[data-theme="dark"] .cube-face-inner {
+  background: rgba(18, 22, 46, 0.92);
+  border-color: var(--face-color);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 0 24px rgba(130, 87, 229, 0.15);
+}
+
+.cube-face-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--face-color);
+  color: #ffffff;
+  margin-bottom: 8px;
+  transform: translateZ(24px);
+}
+
+.cube-face-icon {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 4px 10px rgba(130, 87, 229, 0.3));
+  transform: translateZ(32px);
+}
+
+.cube-face-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  transform: translateZ(22px);
+}
+
+[data-theme="dark"] .cube-face-title {
+  color: #ffffff;
+}
+
+.cube-face-chips {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  transform: translateZ(18px);
+}
+
+.cube-face-chips span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(130, 87, 229, 0.12);
+  color: #55349e;
+}
+
+[data-theme="dark"] .cube-face-chips span {
+  background: rgba(130, 87, 229, 0.28);
+  color: #d8c2ff;
+}
+
+.cube-face-hint {
+  font-size: 0.62rem;
+  color: #94a3b8;
+  margin-top: 8px;
+  font-weight: 600;
+  transform: translateZ(12px);
+}
+
+/* Floor Shadow */
+.cube-floor-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  margin-top: -110px;
+  margin-left: -110px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(130, 87, 229, 0.35) 0%, rgba(130, 87, 229, 0.1) 45%, transparent 75%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.cube-drag-indicator {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(130, 87, 229, 0.2);
+  color: #55349e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .cube-drag-indicator {
+  background: rgba(22, 26, 52, 0.88);
+  border-color: rgba(168, 138, 255, 0.25);
+  color: #cbb4f7;
+}
+
+/* Cube Detail Card */
+.cube-detail-card {
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 36px 32px;
+  border: 1px solid rgba(130, 87, 229, 0.16);
+  box-shadow: 0 20px 50px rgba(130, 87, 229, 0.09);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .cube-detail-card {
+  background: #131732;
+  border-color: rgba(130, 87, 229, 0.3);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+}
+
+.cube-detail-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--theme-accent, #8257e5);
+}
+
+.cube-detail-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cube-detail-badge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--theme-accent);
+  color: #ffffff;
+}
+
+.cube-detail-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="dark"] .cube-detail-tag {
+  color: #9ea4c2;
+}
+
+.cube-detail-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.cube-detail-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(130, 87, 229, 0.1);
+  color: var(--theme-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.cube-detail-heading h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #171633;
+  margin: 0 0 6px;
+}
+
+[data-theme="dark"] .cube-detail-heading h3 {
+  color: #ffffff;
+}
+
+.cube-detail-desc {
+  color: #4b476b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+[data-theme="dark"] .cube-detail-desc {
+  color: #b7b4d1;
+}
+
+.cube-detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #fbfafc;
+  border: 1px solid #ede9f6;
+}
+
+[data-theme="dark"] .cube-detail-metrics {
+  background: #171c3a;
+  border-color: #272f5d;
+}
+
+.metric-box strong {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #171633;
+}
+
+[data-theme="dark"] .metric-box strong {
+  color: #ffffff;
+}
+
+.metric-box strong.metric-green {
+  color: #10b981;
+}
+
+.metric-box span {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .metric-box span {
+  color: #9ea4c2;
+}
+
+.cube-detail-stack {
+  margin-bottom: 28px;
+}
+
+.cube-detail-stack h5 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #55349e;
+  margin: 0 0 10px;
+}
+
+[data-theme="dark"] .cube-detail-stack h5 {
+  color: #cbb4f7;
+}
+
+.cube-stack-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cube-tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(130, 87, 229, 0.08);
+  border: 1px solid rgba(130, 87, 229, 0.18);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1e1b4b;
+}
+
+[data-theme="dark"] .cube-tech-pill {
+  background: rgba(130, 87, 229, 0.2);
+  border-color: rgba(168, 138, 255, 0.25);
+  color: #e0d4fc;
+}
+
+.cube-tech-pill i {
+  color: var(--theme-accent);
+  font-style: normal;
+}
+
+.cube-detail-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   3. HOLOGRAPHIC CERTIFICATE 3D STYLES
+   -------------------------------------------------------------------------- */
+.certificate-3d-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.certificate-3d-card {
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.certificate-3d-card.hovered {
+  box-shadow:
+    0 35px 80px rgba(48, 19, 77, 0.45),
+    0 0 0 3px #dfbe7d,
+    inset 0 0 0 2px #f4d890,
+    inset 0 0 35px rgba(217, 187, 120, 0.35) !important;
+}
+
+[data-theme="dark"] .certificate-3d-card.hovered {
+  box-shadow:
+    0 35px 85px rgba(0, 0, 0, 0.7),
+    0 0 0 3px #dfbe7d,
+    inset 0 0 0 2px #f4d890,
+    inset 0 0 40px rgba(217, 187, 120, 0.25) !important;
+}
+
+/* Holographic Glare Surface */
+.certificate-holo-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+/* 3D Depth Layers */
+.certificate-3d-layer {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+}
+
+.certificate-3d-seal {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffe6a0 0%, #d4af37 45%, #997819 100%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 0 2px #fff3b0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  z-index: 8;
+  transition: transform 0.2s ease-out;
+}
+
+.seal-sparkle {
+  color: #ffffff;
+  font-size: 1.4rem;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.certificate-3d-hint {
+  margin-top: 18px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #7b58a8;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .certificate-3d-hint {
+  color: #d1b8ff;
+}
+
+/* --------------------------------------------------------------------------
+   4. 3D GYROSCOPIC TILT FOR COURSE & WORKSHOP CARDS
+   -------------------------------------------------------------------------- */
+.course-card,
+.workshop-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.course-card:hover {
+  transform: perspective(1000px) translateY(-10px) rotateX(3deg) rotateY(-2deg) scale(1.02);
+  box-shadow: 0 24px 50px rgba(130, 87, 229, 0.16) !important;
+}
+
+[data-theme="dark"] .course-card:hover {
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.5) !important;
+}
+
+.workshop-card:hover {
+  transform: perspective(1000px) translateY(-8px) rotateX(2deg) scale(1.015);
+  box-shadow: 0 20px 45px rgba(130, 87, 229, 0.15) !important;
+}
+
+.course-art,
+.workshop-card-art {
+  transform: translateZ(12px);
+  transform-style: preserve-3d;
+}
+
+.course-card-content,
+.workshop-card-content {
+  transform: translateZ(18px);
+  transform-style: preserve-3d;
+}
+
+.card-duration-badge,
+.mini-tool-chip {
+  transform: translateZ(24px);
+}
