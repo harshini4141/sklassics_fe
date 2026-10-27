@@ -22,6 +22,9 @@ import { HeroConsoleCard } from './components/HeroConsoleCard.jsx'
 import { HiringPartnersBanner } from './components/HiringPartnersBanner.jsx'
 import { CareerTracksSection } from './components/CareerTracksSection.jsx'
 import { ProfessionalCertificate } from './components/ProfessionalCertificate.jsx'
+import { SkillAssessmentModal } from './components/SkillAssessmentModal.jsx'
+import { CheatSheetsSection } from './components/CheatSheetsSection.jsx'
+import { CheatSheetModal } from './components/CheatSheetModal.jsx'
 import aiCourseImage from './assets/courses/artificial-intelligence.webp'
 import bigDataCourseImage from './assets/courses/big-data-analytics.webp'
 import businessAnalyticsCourseImage from './assets/courses/business-analytics.webp'
@@ -954,6 +957,8 @@ function App() {
   const [showDemoModal, setShowDemoModal] = useState(false)
   const [demoCourse, setDemoCourse] = useState(null)
   const [showAdvisorModal, setShowAdvisorModal] = useState(false)
+  const [showAssessmentModal, setShowAssessmentModal] = useState(false)
+  const [selectedCheatSheet, setSelectedCheatSheet] = useState(null)
 
   const openCourse = (course) => setSelectedCourseForModal(course)
   const openDemo = (course = null) => {
@@ -961,6 +966,8 @@ function App() {
     setShowDemoModal(true)
   }
   const openAdvisor = () => setShowAdvisorModal(true)
+  const openAssessment = () => setShowAssessmentModal(true)
+  const openCheatSheet = (sheet) => setSelectedCheatSheet(sheet)
 
   const [currentPath, setCurrentPath] = useState(() => {
     if (typeof window === 'undefined') return '/'
@@ -1269,6 +1276,13 @@ function App() {
 
           <TestimonialsSection />
 
+          {/* Free Interview Preparation & Technical Cheat Sheets Library */}
+          <CheatSheetsSection
+            onOpenSheet={(sheet) => openCheatSheet(sheet)}
+            onOpenAssessment={() => openAssessment()}
+            onOpenDemo={(c) => openDemo(c)}
+          />
+
           <section className="insights-section section-pad" id="insights">
             <div className="container insights-row">
               <div><p className="eyebrow">A GOOD PLACE TO START</p><h2>Small steps.<br /><span>Big possibilities.</span></h2></div>
@@ -1342,10 +1356,26 @@ function App() {
         />
       )}
 
+      {showAssessmentModal && (
+        <SkillAssessmentModal
+          onClose={() => setShowAssessmentModal(false)}
+          onBookDemo={(c) => openDemo(c)}
+        />
+      )}
+
+      {selectedCheatSheet && (
+        <CheatSheetModal
+          sheet={selectedCheatSheet}
+          onClose={() => setSelectedCheatSheet(null)}
+          onBookDemo={(c) => openDemo(c)}
+        />
+      )}
+
       {/* Professional Career Advisor Quick Connect */}
       <QuickAdvisorWidget
         onOpenDemoModal={() => openDemo()}
         onOpenAdvisorModal={() => openAdvisor()}
+        onOpenAssessmentModal={() => openAssessment()}
       />
 
       {/* Floating Direct Call Button (matching sklassics.in) */}
