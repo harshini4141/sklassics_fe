@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import './features.css'
 import './three-d-effects.css'
+import './official-styles.css'
+import { OfficialNavbar } from './components/OfficialNavbar.jsx'
+import { OfficialHero } from './components/OfficialHero.jsx'
+import { OfficialRating } from './components/OfficialRating.jsx'
+import { OfficialUs } from './components/OfficialUs.jsx'
+import { OfficialFooter } from './components/OfficialFooter.jsx'
 import { allCoursesData } from './data/coursesData.js'
 import { CourseModal } from './components/CourseModal.jsx'
 import { BookDemoModal } from './components/BookDemoModal.jsx'
@@ -266,62 +272,12 @@ function ArrowIcon() {
 }
 
 function AboutPage({ onOpenDemoModal }) {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [activeJourney, setActiveJourney] = useState(0)
-  const closeMenu = () => setMenuOpen(false)
   const journey = journeyItems[activeJourney]
 
   return (
     <div className="site-shell about-page-shell">
-      <div className="contact-strip">
-        <div className="container strip-inner">
-          <span>Learning that takes you further.</span>
-          <div>
-            <a href="tel:+919392732581"><span aria-hidden="true">☎</span> +91 93927 32581</a>
-            <a href="mailto:info@sklassics.com"><span aria-hidden="true">✉</span> info@sklassics.com</a>
-          </div>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href="/" aria-label="Sklassics home" onClick={closeMenu}>
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <button
-            className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span /><span /><span />
-          </button>
-          <nav className={`main-nav${menuOpen ? ' nav-open' : ''}`} aria-label="Main navigation">
-            <a href="/" onClick={closeMenu}>Home</a>
-            <a className="about-nav-active" href="/about" aria-current="page" onClick={closeMenu}>About Us</a>
-            <a href="/courses" onClick={closeMenu}>Courses</a>
-            <a href="/workshops" onClick={closeMenu}>Workshops</a>
-            <a href="/blog" onClick={closeMenu}>Blog</a>
-            <a href="/#contact" onClick={closeMenu}>Contact Us</a>
-            <a className="nav-cta" href="/courses" onClick={closeMenu}>Explore courses <ArrowIcon /></a>
-          </nav>
-          <div className="header-actions-group">
-            <ThemeToggle />
-            <button
-              type="button"
-              className="demo-nav-cta"
-              onClick={() => {
-                if (onOpenDemoModal) onOpenDemoModal()
-                closeMenu()
-              }}
-            >
-              <span className="pulse-dot" /> Book Free Demo
-            </button>
-          </div>
-        </div>
-      </header>
+      <OfficialNavbar currentPath="/about" onOpenDemoModal={onOpenDemoModal} />
 
       <main className="about-page">
         <section className="about-page-hero">
@@ -421,16 +377,7 @@ function AboutPage({ onOpenDemoModal }) {
         </section>
       </main>
 
-      <footer className="about-page-footer">
-        <div className="container about-footer-inner">
-          <a className="brand" href="/" aria-label="Sklassics home">
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <p>Build your next chapter with expert-led learning.</p>
-          <a className="button button-primary" href="/courses">Explore courses <ArrowIcon /></a>
-        </div>
-      </footer>
+      <OfficialFooter onOpenDemoModal={onOpenDemoModal} />
     </div>
   )
 }
@@ -480,55 +427,7 @@ function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal })
 
   return (
     <div className="site-shell courses-page-shell">
-      <div className="contact-strip">
-        <div className="container strip-inner">
-          <span>Learning that takes you further.</span>
-          <div>
-            <a href="tel:+919392732581"><span aria-hidden="true">☎</span> +91 93927 32581</a>
-            <a href="mailto:info@sklassics.com"><span aria-hidden="true">✉</span> info@sklassics.com</a>
-          </div>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href="/" aria-label="Sklassics home" onClick={closeMenu}>
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <button
-            className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span /><span /><span />
-          </button>
-          <nav className={`main-nav${menuOpen ? ' nav-open' : ''}`} aria-label="Main navigation">
-            <a href="/" onClick={closeMenu}>Home</a>
-            <a href="/about" onClick={closeMenu}>About Us</a>
-            <a className="about-nav-active" href="/courses" aria-current="page" onClick={closeMenu}>Courses</a>
-            <a href="/workshops" onClick={closeMenu}>Workshops</a>
-            <a href="/blog" onClick={closeMenu}>Blog</a>
-            <a href="/#contact" onClick={closeMenu}>Contact Us</a>
-            <a className="nav-cta" href="#course-catalog" onClick={closeMenu}>Browse courses <ArrowIcon /></a>
-          </nav>
-          <div className="header-actions-group">
-            <ThemeToggle />
-            <button
-              type="button"
-              className="demo-nav-cta"
-              onClick={() => {
-                if (onOpenDemoModal) onOpenDemoModal()
-                closeMenu()
-              }}
-            >
-              <span className="pulse-dot" /> Book Free Demo
-            </button>
-          </div>
-        </div>
-      </header>
+      <OfficialNavbar currentPath="/courses" onOpenDemoModal={onOpenDemoModal} />
 
       <main className="courses-page">
         <section className="courses-page-hero">
@@ -767,16 +666,7 @@ function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal })
         <FaqSection onOpenDemoModal={onOpenDemoModal} />
       </main>
 
-      <footer className="about-page-footer">
-        <div className="container about-footer-inner">
-          <a className="brand" href="/" aria-label="Sklassics home">
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <p>Build your next chapter with expert-led learning.</p>
-          <a className="button button-primary" href="mailto:info@sklassics.com?subject=Learning%20with%20Sklassics">Contact us <ArrowIcon /></a>
-        </div>
-      </footer>
+      <OfficialFooter onOpenDemoModal={onOpenDemoModal} />
     </div>
   )
 }
@@ -792,55 +682,7 @@ function WorkshopsPage({ onOpenDemoModal }) {
 
   return (
     <div className="site-shell workshops-page-shell">
-      <div className="contact-strip">
-        <div className="container strip-inner">
-          <span>Learning that takes you further.</span>
-          <div>
-            <a href="tel:+919392732581"><span aria-hidden="true">☎</span> +91 93927 32581</a>
-            <a href="mailto:info@sklassics.com"><span aria-hidden="true">✉</span> info@sklassics.com</a>
-          </div>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href="/" aria-label="Sklassics home" onClick={closeMenu}>
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <button
-            className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span /><span /><span />
-          </button>
-          <nav className={`main-nav${menuOpen ? ' nav-open' : ''}`} aria-label="Main navigation">
-            <a href="/" onClick={closeMenu}>Home</a>
-            <a href="/about" onClick={closeMenu}>About Us</a>
-            <a href="/courses" onClick={closeMenu}>Courses</a>
-            <a className="about-nav-active" href="/workshops" aria-current="page" onClick={closeMenu}>Workshops</a>
-            <a href="/blog" onClick={closeMenu}>Blog</a>
-            <a href="/#contact" onClick={closeMenu}>Contact Us</a>
-            <a className="nav-cta" href="#workshop-catalog" onClick={closeMenu}>Find a workshop <ArrowIcon /></a>
-          </nav>
-          <div className="header-actions-group">
-            <ThemeToggle />
-            <button
-              type="button"
-              className="demo-nav-cta"
-              onClick={() => {
-                if (onOpenDemoModal) onOpenDemoModal()
-                closeMenu()
-              }}
-            >
-              <span className="pulse-dot" /> Book Free Demo
-            </button>
-          </div>
-        </div>
-      </header>
+      <OfficialNavbar currentPath="/workshops" onOpenDemoModal={onOpenDemoModal} />
 
       <main className="workshops-page">
         <section className="workshops-page-hero">
@@ -947,16 +789,7 @@ function WorkshopsPage({ onOpenDemoModal }) {
         </section>
       </main>
 
-      <footer className="about-page-footer">
-        <div className="container about-footer-inner">
-          <a className="brand" href="/" aria-label="Sklassics home">
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <p>Build your next chapter with expert-led learning.</p>
-          <a className="button button-primary" href="/courses">Explore courses <ArrowIcon /></a>
-        </div>
-      </footer>
+      <OfficialFooter onOpenDemoModal={onOpenDemoModal} />
     </div>
   )
 }
@@ -975,55 +808,7 @@ function BlogPage({ onOpenDemoModal }) {
 
   return (
     <div className="site-shell blog-page-shell">
-      <div className="contact-strip">
-        <div className="container strip-inner">
-          <span>Learning that takes you further.</span>
-          <div>
-            <a href="tel:+919392732581"><span aria-hidden="true">☎</span> +91 93927 32581</a>
-            <a href="mailto:info@sklassics.com"><span aria-hidden="true">✉</span> info@sklassics.com</a>
-          </div>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href="/" aria-label="Sklassics home" onClick={closeMenu}>
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <button
-            className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span /><span /><span />
-          </button>
-          <nav className={`main-nav${menuOpen ? ' nav-open' : ''}`} aria-label="Main navigation">
-            <a href="/" onClick={closeMenu}>Home</a>
-            <a href="/about" onClick={closeMenu}>About Us</a>
-            <a href="/courses" onClick={closeMenu}>Courses</a>
-            <a href="/workshops" onClick={closeMenu}>Workshops</a>
-            <a className="about-nav-active" href="/blog" aria-current="page" onClick={closeMenu}>Blog</a>
-            <a href="/#contact" onClick={closeMenu}>Contact Us</a>
-            <a className="nav-cta" href="#blog-articles" onClick={closeMenu}>Browse articles <ArrowIcon /></a>
-          </nav>
-          <div className="header-actions-group">
-            <ThemeToggle />
-            <button
-              type="button"
-              className="demo-nav-cta"
-              onClick={() => {
-                if (onOpenDemoModal) onOpenDemoModal()
-                closeMenu()
-              }}
-            >
-              <span className="pulse-dot" /> Book Free Demo
-            </button>
-          </div>
-        </div>
-      </header>
+      <OfficialNavbar currentPath="/blog" onOpenDemoModal={onOpenDemoModal} />
 
       <main className="blog-page">
         <section className="blog-page-hero">
@@ -1152,16 +937,7 @@ function BlogPage({ onOpenDemoModal }) {
         </section>
       </main>
 
-      <footer className="about-page-footer">
-        <div className="container about-footer-inner">
-          <a className="brand" href="/" aria-label="Sklassics home">
-            <span className="brand-symbol">s<span>.</span></span>
-            <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-          </a>
-          <p>Build your next chapter with expert-led learning.</p>
-          <a className="button button-primary" href="/courses">Explore courses <ArrowIcon /></a>
-        </div>
-      </footer>
+      <OfficialFooter onOpenDemoModal={onOpenDemoModal} />
     </div>
   )
 }
@@ -1319,124 +1095,11 @@ function App() {
   } else {
     pageContent = (
       <div className="site-shell">
-        <div className="contact-strip">
-          <div className="container strip-inner">
-            <span>Learning that takes you further.</span>
-            <div>
-              <a href="tel:+919392732581"><span aria-hidden="true">☎</span> +91 93927 32581</a>
-              <a href="mailto:info@sklassics.com"><span aria-hidden="true">✉</span> info@sklassics.com</a>
-            </div>
-          </div>
-        </div>
-
-        <header className="site-header">
-          <div className="container header-inner">
-            <a className="brand" href="#home" aria-label="Sklassics home" onClick={closeMenu}>
-              <span className="brand-symbol">s<span>.</span></span>
-              <span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span>
-            </a>
-            <button
-              className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
-              type="button"
-              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <span /><span /><span />
-            </button>
-            <nav className={`main-nav${menuOpen ? ' nav-open' : ''}`} aria-label="Main navigation">
-              <a href="#home" onClick={closeMenu}>Home</a>
-              <a href="/about" onClick={closeMenu}>About Us</a>
-              <a href="/courses" onClick={closeMenu}>Courses</a>
-              <a href="/workshops" onClick={closeMenu}>Workshops</a>
-              <a href="/blog" onClick={closeMenu}>Blog</a>
-              <a href="#contact" onClick={closeMenu}>Contact Us</a>
-              <a className="nav-cta" href="/courses" onClick={closeMenu}>Explore courses <ArrowIcon /></a>
-            </nav>
-            <div className="header-actions-group">
-              <ThemeToggle />
-              <button
-                type="button"
-                className="demo-nav-cta"
-                onClick={() => {
-                  openDemo()
-                  closeMenu()
-                }}
-              >
-                <span className="pulse-dot" /> Book Free Demo
-              </button>
-            </div>
-          </div>
-        </header>
+        <OfficialNavbar currentPath="/" onOpenDemoModal={() => openDemo()} />
 
         <main>
-          <section className="hero-section" id="home">
-            <div className="container hero-layout">
-              <div className="hero-copy">
-                <div className="hero-pill-badge">
-                  <span className="hero-pill-dot" />
-                  <span>ISO 9001:2015 ACCREDITED IT TRAINING</span>
-                </div>
-                <h1>
-                  Master High-Demand Tech Skills.
-                  <span className="hero-title-highlight">Build a Career That Stands Out.</span>
-                </h1>
-                <p className="hero-description">
-                  Live, mentor-led programs in Generative AI, Cloud DevOps, Big Data &amp; Analytics.
-                  Learn with hands-on production code, personalized 1:1 mentorship, and dedicated placement assistance.
-                </p>
-                <div className="hero-actions">
-                  <a className="button button-primary" href="/courses">
-                    <span>Explore All Programs</span>
-                    <ArrowIcon />
-                  </a>
-                  <button
-                    type="button"
-                    className="button button-secondary"
-                    onClick={() => openDemo()}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" />
-                      <line x1="8" y1="2" x2="8" y2="6" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                    <span>Book Free Demo Class</span>
-                  </button>
-                </div>
-                <div className="hero-trust-bar">
-                  <div className="trust-stat-item">
-                    <strong>1,200+</strong>
-                    <span>Learners Trained</span>
-                  </div>
-                  <div className="trust-sep" />
-                  <div className="trust-stat-item">
-                    <strong>4.9 ★</strong>
-                    <span>Alumni Rating</span>
-                  </div>
-                  <div className="trust-sep" />
-                  <div className="trust-stat-item">
-                    <strong>92%</strong>
-                    <span>Placement Rate</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="hero-magic" aria-hidden="true">
-                <div className="magic-caption"><i /> LEARN. BUILD. GROW.</div>
-                <div className="magic-orbit orbit-outer" />
-                <div className="magic-orbit orbit-inner" />
-                <div className="magic-core"><span>s.</span><i>✦</i></div>
-                <span className="magic-chip magic-chip-cloud"><b>☁</b> AWS Cloud</span>
-                <span className="magic-chip magic-chip-data"><b>⚡</b> AI &amp; LLMs</span>
-                <span className="magic-chip magic-chip-design"><b>▥</b> Power BI</span>
-                <span className="magic-chip magic-chip-code"><b>🐍</b> Python</span>
-                <span className="magic-star star-one">✧</span>
-                <span className="magic-star star-two">✦</span>
-                <span className="magic-star star-three">✧</span>
-              </div>
-            </div>
-          </section>
+          <OfficialHero onOpenDemoModal={() => openDemo()} />
+          <OfficialRating />
 
           {/* Enterprise Hiring Partners & Career Metrics */}
           <HiringPartnersBanner />
@@ -1473,29 +1136,6 @@ function App() {
                   <div className="offer-ticket"><small>UP TO</small><strong>50<span>%</span></strong><b>OFF</b><span className="offer-ticket-shine" /></div>
                   <span className="offer-stamp">LEARN<br />MORE</span>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="benefits-section section-pad" id="about">
-            <div className="container benefits-layout">
-              <div className="benefits-intro">
-                <p className="eyebrow">THE SKLASSICS DIFFERENCE</p>
-                <h2>Why learners<br />choose us</h2>
-                <p>Everything you need to learn with confidence and turn new skills into real opportunities.</p>
-              </div>
-              <div className="benefit-grid" aria-label="Learner benefits">
-                {benefits.map((benefit, index) => (
-                  <article className="benefit-card" key={benefit.title}>
-                    <span className={`benefit-icon ${benefit.tone}`}>{benefit.icon}</span>
-                    <span className="benefit-number">0{index + 1}</span>
-                    <div className="benefit-content">
-                      <h3>{benefit.title}</h3>
-                      <p>{benefit.text}</p>
-                    </div>
-                    <span className="benefit-arrow">↗</span>
-                  </article>
-                ))}
               </div>
             </div>
           </section>
@@ -1575,11 +1215,8 @@ function App() {
             onOpenAdvisorModal={() => openAdvisor()}
           />
 
-          <section className="about-section section-pad" id="accreditation">
-            <div className="container">
-              <ProfessionalCertificate onOpenDemoModal={() => openDemo()} />
-            </div>
-          </section>
+          <OfficialUs onOpenDemoModal={() => openDemo()} />
+
 
           <section className="gallery-section section-pad">
             <div className="container">
@@ -1669,41 +1306,7 @@ function App() {
           <FaqSection onOpenDemoModal={() => openDemo()} />
         </main>
 
-        <footer className="site-footer" id="contact">
-          <div className="container">
-            <div className="footer-top">
-              <div className="footer-newsletter">
-                <p className="eyebrow">A LITTLE INSPIRATION, IN YOUR INBOX</p>
-                <h2>Where talent meets<br /><span>opportunity.</span></h2>
-                <form className="subscribe-form" onSubmit={handleSubscribe}>
-                  <label className="sr-only" htmlFor="newsletter-email">Email address</label>
-                  <input
-                    id="newsletter-email"
-                    type="email"
-                    placeholder="Your email address"
-                    value={email}
-                    onChange={(event) => { setEmail(event.target.value); setSubscribed(false) }}
-                    required
-                  />
-                  <button type="submit" aria-label="Subscribe to the newsletter"><ArrowIcon /></button>
-                </form>
-                <p className="subscribe-note" aria-live="polite">
-                  {subscribed ? 'Thanks for subscribing — we’ll be in touch.' : 'No spam. Just good things to help you grow.'}
-                </p>
-              </div>
-              <div className="footer-links">
-              <div><h3>EXPLORE</h3><a href="/about">About us</a><a href="/courses">Courses</a><a href="/workshops">Workshops</a><a href="/blog">Learning tips</a><a href="/#tech-ecosystem">3D Tech Lab</a><a href="/#career-roi">Salary ROI</a><a href="/#capstone-projects">Projects</a></div>
-                <div><h3>LET’S TALK</h3><a href="tel:+919392732581">+91 93927 32581</a><a href="mailto:info@sklassics.com">info@sklassics.com</a><p>Hyderabad, Telangana, India</p></div>
-                <div className="footer-cta"><span>READY WHEN YOU ARE</span><h3>Make your next<br />move count.</h3><a href="mailto:info@sklassics.com">Get started <ArrowIcon /></a></div>
-              </div>
-            </div>
-            <div className="footer-bottom">
-              <a className="brand footer-brand" href="#home"><span className="brand-symbol">s<span>.</span></span><span className="brand-name">sklassics<small>LEARN. BUILD. GROW.</small></span></a>
-              <span>© 2026 Sklassics Technologies</span>
-              <div><a href="#contact">Privacy</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="#home">Back to top ↑</a></div>
-            </div>
-          </div>
-        </footer>
+        <OfficialFooter onOpenDemoModal={() => openDemo()} />
       </div>
     )
   }
@@ -1744,6 +1347,27 @@ function App() {
         onOpenDemoModal={() => openDemo()}
         onOpenAdvisorModal={() => openAdvisor()}
       />
+
+      {/* Floating Direct Call Button (matching sklassics.in) */}
+      <a
+        href="tel:+919392732581"
+        className="sk-floating-call-btn"
+        aria-label="Call Sklassics Admissions"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      </a>
     </>
   )
 }
