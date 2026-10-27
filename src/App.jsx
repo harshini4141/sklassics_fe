@@ -15,13 +15,6 @@ import { CareerAdvisorModal } from './components/CareerAdvisorModal.jsx'
 import { TestimonialsSection } from './components/TestimonialsSection.jsx'
 import { FaqSection } from './components/FaqSection.jsx'
 import { ThemeToggle } from './components/ThemeToggle.jsx'
-import { QuickAdvisorWidget } from './components/QuickAdvisorWidget.jsx'
-import { SalaryCalculator } from './components/SalaryCalculator.jsx'
-import { ProjectShowcase } from './components/ProjectShowcase.jsx'
-import { HeroConsoleCard } from './components/HeroConsoleCard.jsx'
-import { HiringPartnersBanner } from './components/HiringPartnersBanner.jsx'
-import { CareerTracksSection } from './components/CareerTracksSection.jsx'
-import { ProfessionalCertificate } from './components/ProfessionalCertificate.jsx'
 import { SkillAssessmentModal } from './components/SkillAssessmentModal.jsx'
 import { CheatSheetsSection } from './components/CheatSheetsSection.jsx'
 import { CheatSheetModal } from './components/CheatSheetModal.jsx'
@@ -1108,45 +1101,6 @@ function App() {
           <OfficialHero onOpenDemoModal={() => openDemo()} />
           <OfficialRating />
 
-          {/* Enterprise Hiring Partners & Career Metrics */}
-          <HiringPartnersBanner />
-
-          <div className="container" style={{ margin: '36px auto' }}>
-            <div className="quiz-teaser-banner">
-              <div className="quiz-teaser-copy">
-                <span className="quiz-teaser-tag">PERSONALIZED CAREER ADVISORY</span>
-                <h3>Not sure which tech domain fits your background?</h3>
-                <p>Take our 60-second interactive assessment to get a personalized learning roadmap based on your goals and current experience.</p>
-              </div>
-              <button
-                type="button"
-                className="quiz-teaser-btn"
-                onClick={openAdvisor}
-              >
-                <span>Take 60-Sec Career Quiz</span>
-                <ArrowIcon />
-              </button>
-            </div>
-          </div>
-
-          <section className="offers-section section-pad" id="workshops">
-            <div className="container">
-              <div className="offer-card">
-                <div className="offer-copy">
-                  <span className="offer-kicker"><span /> LIMITED-TIME OFFER</span>
-                  <h2>Your next big skill,<br /><em>at a better price.</em></h2>
-                  <p>Get up to 50% off select bootcamps. Learn with expert mentors and take the next step in your career.</p>
-                  <a href="/courses" className="offer-link">Explore discounted courses <ArrowIcon /></a>
-                </div>
-                <div className="offer-art" aria-label="Up to 50 percent off">
-                  <span className="offer-spark spark-a">✳</span><span className="offer-spark spark-b">✦</span>
-                  <div className="offer-ticket"><small>UP TO</small><strong>50<span>%</span></strong><b>OFF</b><span className="offer-ticket-shine" /></div>
-                  <span className="offer-stamp">LEARN<br />MORE</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
           <section className="courses-section section-pad" id="courses">
             <div className="container">
               <div className="courses-heading">
@@ -1206,21 +1160,6 @@ function App() {
               </button>
             </div>
           </section>
-
-          <SalaryCalculator
-            onOpenDemoModal={() => openDemo()}
-            onOpenAdvisorModal={() => openAdvisor()}
-          />
-
-          <ProjectShowcase
-            onOpenCourseModal={(course) => openCourse(course)}
-          />
-
-          {/* Executive Career Tracks & Specializations Roadmap */}
-          <CareerTracksSection
-            onOpenDemoModal={() => openDemo()}
-            onOpenAdvisorModal={() => openAdvisor()}
-          />
 
           <OfficialUs onOpenDemoModal={() => openDemo()} />
 
@@ -1283,40 +1222,6 @@ function App() {
             onOpenDemo={(c) => openDemo(c)}
           />
 
-          <section className="insights-section section-pad" id="insights">
-            <div className="container insights-row">
-              <div><p className="eyebrow">A GOOD PLACE TO START</p><h2>Small steps.<br /><span>Big possibilities.</span></h2></div>
-              <p>Get fresh learning tips, new course announcements, and opportunities to help you keep growing.</p>
-              <button
-                type="button"
-                className="button button-primary"
-                onClick={() => openDemo()}
-              >
-                Talk to our team <ArrowIcon />
-              </button>
-            </div>
-          </section>
-
-          {/* Upcoming Batches & Program Navigator (Moved to the end) */}
-          <section className="cohort-planner-section section-pad" id="cohort-navigator">
-            <div className="container">
-              <div className="section-head-center">
-                <span className="section-pill">UPCOMING BATCHES &amp; SYLLABUS</span>
-                <h2>Explore Programs &amp; Admission Details</h2>
-                <p>
-                  Review course curriculum, technical frameworks, lead mentors, and upcoming batch timings for our flagship programs.
-                </p>
-              </div>
-              <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-                <HeroConsoleCard
-                  onOpenCourseModal={openCourse}
-                  onOpenDemoModal={openDemo}
-                  allCourses={allCoursesData}
-                />
-              </div>
-            </div>
-          </section>
-
           <FaqSection onOpenDemoModal={() => openDemo()} />
         </main>
 
@@ -1371,33 +1276,17 @@ function App() {
         />
       )}
 
-      {/* Professional Career Advisor Quick Connect */}
-      <QuickAdvisorWidget
-        onOpenDemoModal={() => openDemo()}
-        onOpenAdvisorModal={() => openAdvisor()}
-        onOpenAssessmentModal={() => openAssessment()}
-      />
-
-      {/* Floating Direct Call Button (matching sklassics.in) */}
-      <a
-        href="tel:+919392732581"
-        className="sk-floating-call-btn"
-        aria-label="Call Sklassics Admissions"
-      >
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
+      {/* Quick Action Floating Controls (from sklassics.in) */}
+      <div className="home-quick-actions">
+        <a
+          href="tel:+919392732581"
+          className="home-phone-btn"
+          aria-label="Call Sklassics Admissions"
         >
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-        </svg>
-      </a>
+          <span className="home-phone-dot" aria-hidden="true" />
+          +91 93927 32581
+        </a>
+      </div>
     </>
   )
 }

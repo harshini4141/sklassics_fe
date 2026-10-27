@@ -37,8 +37,10 @@ export function OfficialHero({ onOpenDemoModal }) {
           <div className="hero-copy-box">
             {/* Eyebrow Badge */}
             <div className="hero-eyebrow-pill">
-              <span className="hero-star-icon">✦</span>
-              <span>Industry-Ready IT Skills</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '4px' }}>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>Industry-Ready IT Programs</span>
               <span className="hero-pill-sep">·</span>
               <span className="hero-accredited-tag">ISO 9001:2015 Accredited</span>
             </div>
@@ -94,19 +96,9 @@ export function OfficialHero({ onOpenDemoModal }) {
 
             {/* Social Trust Indicators */}
             <div className="hero-trust-bar">
-              <div className="hero-avatar-stack">
-                {['AI', 'CL', 'DE', 'UX'].map((label, idx) => (
-                  <span
-                    key={label}
-                    className="hero-avatar-badge"
-                    style={{ opacity: 1 - idx * 0.08 }}
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
+              <span style={{ color: '#f59e0b', fontSize: '15px', letterSpacing: '2px' }}>★★★★★</span>
               <span className="hero-trust-text">
-                <strong>Trusted by 50,000+ learners</strong> · 4.8/5 average alumni rating
+                <strong>4.8 / 5 Rating</strong> · Trusted by 1,000+ Alumni in Hyderabad &amp; Worldwide
               </span>
             </div>
           </div>
