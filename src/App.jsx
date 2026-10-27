@@ -9,13 +9,13 @@ import { CareerAdvisorModal } from './components/CareerAdvisorModal.jsx'
 import { TestimonialsSection } from './components/TestimonialsSection.jsx'
 import { FaqSection } from './components/FaqSection.jsx'
 import { ThemeToggle } from './components/ThemeToggle.jsx'
-import { AiAssistantWidget } from './components/AiAssistantWidget.jsx'
+import { QuickAdvisorWidget } from './components/QuickAdvisorWidget.jsx'
 import { SalaryCalculator } from './components/SalaryCalculator.jsx'
-import { LiveSocialProof } from './components/LiveSocialProof.jsx'
 import { ProjectShowcase } from './components/ProjectShowcase.jsx'
-import { Hero3dSphere } from './components/Hero3dSphere.jsx'
-import { TechCube3D } from './components/TechCube3D.jsx'
-import { HolographicCertificate3D } from './components/HolographicCertificate3D.jsx'
+import { HeroConsoleCard } from './components/HeroConsoleCard.jsx'
+import { HiringPartnersBanner } from './components/HiringPartnersBanner.jsx'
+import { CareerTracksSection } from './components/CareerTracksSection.jsx'
+import { ProfessionalCertificate } from './components/ProfessionalCertificate.jsx'
 import aiCourseImage from './assets/courses/artificial-intelligence.webp'
 import bigDataCourseImage from './assets/courses/big-data-analytics.webp'
 import businessAnalyticsCourseImage from './assets/courses/business-analytics.webp'
@@ -1373,61 +1373,81 @@ function App() {
           <section className="hero-section" id="home">
             <div className="container hero-layout">
               <div className="hero-copy">
-                <p className="eyebrow"><span /> BUILD SKILLS. BUILD YOUR FUTURE.</p>
-                <h1>Accelerate your career growth <span>&amp; upskill yourself.</span></h1>
+                <div className="hero-pill-badge">
+                  <span className="hero-pill-dot" />
+                  <span>ISO 9001:2015 ACCREDITED IT TRAINING</span>
+                </div>
+                <h1>
+                  Master High-Demand Tech Skills.
+                  <span className="hero-title-highlight">Build a Career That Stands Out.</span>
+                </h1>
                 <p className="hero-description">
-                  Live, mentor-led IT programs in Cloud, AI and Data Engineering —
-                  designed around real-world projects and the skills companies hire for.
+                  Live, mentor-led programs in Generative AI, Cloud DevOps, Big Data &amp; Analytics.
+                  Learn with hands-on production code, personalized 1:1 mentorship, and dedicated placement assistance.
                 </p>
                 <div className="hero-actions">
-                  <a className="button button-primary" href="/courses">Explore courses <ArrowIcon /></a>
+                  <a className="button button-primary" href="/courses">
+                    <span>Explore All Programs</span>
+                    <ArrowIcon />
+                  </a>
                   <button
                     type="button"
                     className="button button-secondary"
                     onClick={() => openDemo()}
                   >
-                    Book Free Demo Class 📅
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <line x1="16" y1="2" x2="16" y2="6" />
+                      <line x1="8" y1="2" x2="8" y2="6" />
+                      <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    <span>Book Free Demo Class</span>
                   </button>
                 </div>
-                <div className="hero-proof">
-                  <div className="proof-avatars" aria-hidden="true"><i>A</i><i>V</i><i>S</i><i>+</i></div>
-                  <p><strong>50k+ learners</strong><span><b>★★★★★</b> &nbsp;4.8/5 average rating</span></p>
+                <div className="hero-trust-bar">
+                  <div className="trust-stat-item">
+                    <strong>1,200+</strong>
+                    <span>Learners Trained</span>
+                  </div>
+                  <div className="trust-sep" />
+                  <div className="trust-stat-item">
+                    <strong>4.9 ★</strong>
+                    <span>Alumni Rating</span>
+                  </div>
+                  <div className="trust-sep" />
+                  <div className="trust-stat-item">
+                    <strong>92%</strong>
+                    <span>Placement Rate</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Interactive 3D Technology Sphere & Orbital Matrix */}
-              <Hero3dSphere />
+              {/* Clean Executive Learning & Batch Console */}
+              <HeroConsoleCard
+                onOpenCourseModal={openCourse}
+                onOpenDemoModal={openDemo}
+                allCourses={allCoursesData}
+              />
             </div>
           </section>
 
-          <div className="skill-marquee" aria-label="Learning areas">
-            <div className="skill-marquee-track">
-              <div className="skill-marquee-group">
-                <span>Mobile</span><span>Cloud</span><span>AI/ML</span><span>Data Engineering</span>
-                <span>Cybersecurity</span><span>DevOps</span><span>Product Mgmt</span><span>UI/UX</span>
-                <span>Blockchain</span><span>AR/VR</span>
-              </div>
-              <div className="skill-marquee-group" aria-hidden="true">
-                <span>Mobile</span><span>Cloud</span><span>AI/ML</span><span>Data Engineering</span>
-                <span>Cybersecurity</span><span>DevOps</span><span>Product Mgmt</span><span>UI/UX</span>
-                <span>Blockchain</span><span>AR/VR</span>
-              </div>
-            </div>
-          </div>
+          {/* Enterprise Hiring Partners & Career Metrics */}
+          <HiringPartnersBanner />
 
-          <div className="container">
+          <div className="container" style={{ margin: '36px auto' }}>
             <div className="quiz-teaser-banner">
               <div className="quiz-teaser-copy">
-                <span className="quiz-teaser-tag">✦ NOT SURE WHERE TO START?</span>
-                <h3>Find your ideal tech learning roadmap in 60 seconds</h3>
-                <p>Take our quick interactive quiz to match your background and career goals with the right curriculum.</p>
+                <span className="quiz-teaser-tag">PERSONALIZED CAREER ADVISORY</span>
+                <h3>Not sure which tech domain fits your background?</h3>
+                <p>Take our 60-second interactive assessment to get a personalized learning roadmap based on your goals and current experience.</p>
               </div>
               <button
                 type="button"
                 className="quiz-teaser-btn"
                 onClick={openAdvisor}
               >
-                Take Career Path Quiz 🎯
+                <span>Take 60-Sec Career Quiz</span>
+                <ArrowIcon />
               </button>
             </div>
           </div>
@@ -1511,7 +1531,7 @@ function App() {
                             style={{ padding: '6px 12px', fontSize: '0.78rem' }}
                             onClick={() => openCourse(course)}
                           >
-                            Syllabus 📖
+                            View Syllabus
                           </button>
                           <a href="#contact" aria-label={`Preview ${course.title} course`}>Preview</a>
                         </div>
@@ -1542,49 +1562,15 @@ function App() {
             onOpenCourseModal={(course) => openCourse(course)}
           />
 
-          {/* Interactive 3D Holographic Tech Cube Explorer */}
-          <TechCube3D
+          {/* Executive Career Tracks & Specializations Roadmap */}
+          <CareerTracksSection
             onOpenDemoModal={() => openDemo()}
             onOpenAdvisorModal={() => openAdvisor()}
           />
 
-          <section className="about-section section-pad">
+          <section className="about-section section-pad" id="accreditation">
             <div className="container">
-              <div className="about-layout">
-                <div className="about-copy">
-                  <p className="eyebrow">A LITTLE ABOUT US</p>
-                  <h2>We help learners level-up <span>with expert-led IT training.</span></h2>
-                  <p>
-                    We are a team of seasoned professionals across modern IT stacks. Our passion is
-                    making high-quality education accessible and preparing learners for real projects and careers.
-                  </p>
-                  <p>
-                    At Sklassics, our programs span fundamentals to advanced techniques—carefully
-                    designed with industry to build skills and confidence through practice.
-                  </p>
-                  <div className="about-stats">
-                    <div><strong>1000+</strong><small>Learners</small></div>
-                    <div><strong>25+</strong><small>Mentors</small></div>
-                    <div><strong>30+</strong><small>Courses</small></div>
-                  </div>
-                  <a className="button button-dark" href="/courses">Explore courses <ArrowIcon /></a>
-                </div>
-
-                {/* 3D Holographic Certificate with gyroscopic tilt & rainbow refraction */}
-                <HolographicCertificate3D />
-              </div>
-              <div className="about-tech-strip" aria-label="Technologies covered in our courses">
-                <div className="about-tech-track">
-                  <div className="about-tech-group">
-                    <span>Python</span><i>✦</i><span>SQL</span><i>✦</i><span>Power BI</span><i>✦</i>
-                    <span>Cloud</span><i>✦</i><span>Generative AI</span><i>✦</i><span>Data Science</span><i>✦</i>
-                  </div>
-                  <div className="about-tech-group" aria-hidden="true">
-                    <span>Python</span><i>✦</i><span>SQL</span><i>✦</i><span>Power BI</span><i>✦</i>
-                    <span>Cloud</span><i>✦</i><span>Generative AI</span><i>✦</i><span>Data Science</span><i>✦</i>
-                  </div>
-                </div>
-              </div>
+              <ProfessionalCertificate onOpenDemoModal={() => openDemo()} />
             </div>
           </section>
 
@@ -1726,10 +1712,8 @@ function App() {
         />
       )}
 
-      {/* Interactive Global Creative Floating Widgets */}
-      <LiveSocialProof onOpenDemoModal={() => openDemo()} />
-
-      <AiAssistantWidget
+      {/* Professional Career Advisor Quick Connect */}
+      <QuickAdvisorWidget
         onOpenDemoModal={() => openDemo()}
         onOpenAdvisorModal={() => openAdvisor()}
       />

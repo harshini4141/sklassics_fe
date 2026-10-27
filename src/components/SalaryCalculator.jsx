@@ -3,7 +3,7 @@ import { useState } from 'react'
 const DOMAIN_DATA = {
   ai: {
     name: 'Generative AI & Machine Learning',
-    icon: '🤖',
+    code: 'AI/ML',
     multiplier: 1.75,
     minSalary: 8.5,
     maxSalary: 32.0,
@@ -13,7 +13,7 @@ const DOMAIN_DATA = {
   },
   cloud: {
     name: 'Cloud Architecture & DevOps',
-    icon: '☁️',
+    code: 'Cloud/Ops',
     multiplier: 1.55,
     minSalary: 8.0,
     maxSalary: 28.0,
@@ -23,7 +23,7 @@ const DOMAIN_DATA = {
   },
   data: {
     name: 'Data Analytics & Power BI',
-    icon: '📊',
+    code: 'BI/SQL',
     multiplier: 1.45,
     minSalary: 6.5,
     maxSalary: 20.0,
@@ -33,7 +33,7 @@ const DOMAIN_DATA = {
   },
   fullstack: {
     name: 'Modern Full-Stack Engineering',
-    icon: '💻',
+    code: 'Web/Cloud',
     multiplier: 1.5,
     minSalary: 7.0,
     maxSalary: 24.0,
@@ -43,7 +43,7 @@ const DOMAIN_DATA = {
   },
   bigdata: {
     name: 'Big Data Engineering & PySpark',
-    icon: '⚡',
+    code: 'Big Data',
     multiplier: 1.65,
     minSalary: 9.0,
     maxSalary: 30.0,
@@ -79,13 +79,13 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
   const threeYearUpside = Number((addedAnnualIncome * 3.4).toFixed(1))
 
   return (
-    <section className="salary-calculator-section" id="career-roi">
+    <section className="salary-calculator-section section-pad" id="career-roi">
       <div className="container">
-        <div className="salary-calc-header">
-          <span className="calc-badge">📊 INTERACTIVE CAREER GROWTH ESTIMATOR</span>
-          <h2>Calculate Your Tech Career &amp; <span>Salary Upside</span></h2>
+        <div className="section-head-center">
+          <span className="section-pill">CAREER ROI ESTIMATOR</span>
+          <h2>Calculate Your Tech Career &amp; Salary Growth</h2>
           <p>
-            See realistic salary benchmarks, projected hike percentage, and recruiter demand tailored to your target tech specialization.
+            Explore verified compensation benchmarks, projected hike percentages, and hiring partner demand tailored to your target tech specialization.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
                     className={`domain-pill-btn ${selectedDomain === key ? 'active' : ''}`}
                     onClick={() => setSelectedDomain(key)}
                   >
-                    <span className="domain-icon">{data.icon}</span>
+                    <span className="domain-tag-badge">{data.code}</span>
                     <span className="domain-text">{data.name}</span>
                   </button>
                 ))}
@@ -176,7 +176,7 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
           {/* Right Column: Visual Result Projection Dashboard */}
           <div className="salary-calc-results">
             <div className="results-top-banner">
-              <span className="results-tag">PROJECTED 2026 BENCHMARK</span>
+              <span className="results-tag">PROJECTED INDUSTRY BENCHMARK</span>
               <p>Estimated Post-Bootcamp Transition Result</p>
             </div>
 
@@ -199,7 +199,6 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
             {/* Secondary Visual Metrics */}
             <div className="secondary-metrics-grid">
               <div className="sec-metric-card">
-                <span className="sec-icon">📈</span>
                 <div>
                   <strong>+₹{addedAnnualIncome} LPA</strong>
                   <small>Added Yearly Earnings</small>
@@ -207,7 +206,6 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
               </div>
 
               <div className="sec-metric-card">
-                <span className="sec-icon">⏱️</span>
                 <div>
                   <strong>{domain.timeframe}</strong>
                   <small>Average Placement Window</small>
@@ -215,10 +213,9 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
               </div>
 
               <div className="sec-metric-card highlight">
-                <span className="sec-icon">💰</span>
                 <div>
                   <strong>₹{threeYearUpside} Lakhs+</strong>
-                  <small>3-Year Compounded Upside</small>
+                  <small>3-Year Cumulative Growth</small>
                 </div>
               </div>
             </div>
@@ -250,12 +247,12 @@ export function SalaryCalculator({ onOpenDemoModal, onOpenAdvisorModal }) {
                 className="button calc-secondary-btn"
                 onClick={() => onOpenAdvisorModal && onOpenAdvisorModal()}
               >
-                Take 60s Career Path Quiz 🎯
+                Take 60s Career Path Quiz →
               </button>
             </div>
 
             <p className="calc-disclaimer">
-              *Projections based on Sklassics alumni placements &amp; Glassdoor/AmbitionBox industry data across metro tech hubs.
+              *Projections based on Sklassics alumni placements &amp; Glassdoor/AmbitionBox industry benchmarks across tech hubs.
             </p>
           </div>
         </div>
