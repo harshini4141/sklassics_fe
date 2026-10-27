@@ -1422,12 +1422,19 @@ function App() {
                 </div>
               </div>
 
-              {/* Clean Executive Learning & Batch Console */}
-              <HeroConsoleCard
-                onOpenCourseModal={openCourse}
-                onOpenDemoModal={openDemo}
-                allCourses={allCoursesData}
-              />
+              <div className="hero-magic" aria-hidden="true">
+                <div className="magic-caption"><i /> LEARN. BUILD. GROW.</div>
+                <div className="magic-orbit orbit-outer" />
+                <div className="magic-orbit orbit-inner" />
+                <div className="magic-core"><span>s.</span><i>✦</i></div>
+                <span className="magic-chip magic-chip-cloud"><b>☁</b> AWS Cloud</span>
+                <span className="magic-chip magic-chip-data"><b>⚡</b> AI &amp; LLMs</span>
+                <span className="magic-chip magic-chip-design"><b>▥</b> Power BI</span>
+                <span className="magic-chip magic-chip-code"><b>🐍</b> Python</span>
+                <span className="magic-star star-one">✧</span>
+                <span className="magic-star star-two">✦</span>
+                <span className="magic-star star-three">✧</span>
+              </div>
             </div>
           </section>
 
@@ -1636,6 +1643,26 @@ function App() {
               >
                 Talk to our team <ArrowIcon />
               </button>
+            </div>
+          </section>
+
+          {/* Upcoming Batches & Program Navigator (Moved to the end) */}
+          <section className="cohort-planner-section section-pad" id="cohort-navigator">
+            <div className="container">
+              <div className="section-head-center">
+                <span className="section-pill">UPCOMING BATCHES &amp; SYLLABUS</span>
+                <h2>Explore Programs &amp; Admission Details</h2>
+                <p>
+                  Review course curriculum, technical frameworks, lead mentors, and upcoming batch timings for our flagship programs.
+                </p>
+              </div>
+              <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+                <HeroConsoleCard
+                  onOpenCourseModal={openCourse}
+                  onOpenDemoModal={openDemo}
+                  allCourses={allCoursesData}
+                />
+              </div>
             </div>
           </section>
 

@@ -18,18 +18,15 @@
   border-bottom-color: #1e293b;
 }
 
-.hero-layout {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 48px;
-  align-items: center;
+.cohort-planner-section {
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
 }
 
-@media (max-width: 1024px) {
-  .hero-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+[data-theme="dark"] .cohort-planner-section {
+  background: #0d1220;
+  border-top-color: #1e293b;
 }
 
 .hero-copy {
