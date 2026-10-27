@@ -48,7 +48,7 @@ export function OfficialHero({ onOpenDemoModal }) {
             {/* Main Headline */}
             <h1 className="hero-title">
               <span className="hero-title-main">
-                Accelerate Your<br className="hero-desktop-br" />
+                Accelerate Your<br />
                 Career Growth
               </span>
               <span className="hero-gradient-text">
@@ -92,8 +92,8 @@ export function OfficialHero({ onOpenDemoModal }) {
             </div>
 
             {/* Social Trust Indicators */}
-            <div className="hero-trust-bar">
-              <span style={{ color: '#f59e0b', fontSize: '15px', letterSpacing: '2px' }}>★★★★★</span>
+            <div className="official-hero-trust-bar">
+              <span className="official-hero-stars">★★★★★</span>
               <span className="hero-trust-text">
                 <strong>4.8 / 5 Rating</strong> · Trusted by 1,000+ Alumni in Hyderabad &amp; Worldwide
               </span>

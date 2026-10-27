@@ -589,6 +589,7 @@
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
 }
 
+.official-hero-trust-bar,
 .hero-trust-bar {
   margin-top: 32px;
   display: flex;
@@ -597,6 +598,13 @@
   gap: 12px;
   font-size: 14px;
   color: #4b5563;
+}
+
+.official-hero-stars {
+  color: #f59e0b;
+  font-size: 15px;
+  letter-spacing: 2px;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -705,14 +713,20 @@
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
   }
 
+  .official-hero-trust-bar,
   .hero-trust-bar {
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    font-size: 13px;
-    max-width: calc(100% - 64px);
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    max-width: calc(100% - 64px) !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+    text-align: left !important;
   }
 
   .hero-marquee-wrap {
@@ -3069,4 +3083,18 @@
   border-color: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
+
+@media (max-width: 540px) {
+  .courses-hero-actions-row {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .courses-hero-actions-row a,
+  .courses-hero-actions-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
 

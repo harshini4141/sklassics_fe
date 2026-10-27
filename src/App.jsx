@@ -432,7 +432,7 @@ function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal })
               <p className="eyebrow">LEARN. BUILD. GROW.</p>
               <h1>Find the skills to <span>move your career forward.</span></h1>
               <p>Explore practical, mentor-led programs in AI, data, analytics, and programming. Choose a learning path and start building skills you can use.</p>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
+              <div className="courses-hero-actions-row" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
                 <a className="button button-primary" href="#course-catalog">Explore our courses <ArrowIcon /></a>
                 <button
                   type="button"
