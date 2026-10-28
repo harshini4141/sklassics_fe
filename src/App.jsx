@@ -14,16 +14,20 @@ import { BookDemoModal } from './components/BookDemoModal.jsx'
 import { CareerAdvisorModal } from './components/CareerAdvisorModal.jsx'
 import { TestimonialsSection } from './components/TestimonialsSection.jsx'
 import { FaqSection } from './components/FaqSection.jsx'
-import { ThemeToggle } from './components/ThemeToggle.jsx'
+
 import { SkillAssessmentModal } from './components/SkillAssessmentModal.jsx'
 import { CheatSheetsSection } from './components/CheatSheetsSection.jsx'
 import { CheatSheetModal } from './components/CheatSheetModal.jsx'
+import { QuickAdvisorWidget } from './components/QuickAdvisorWidget.jsx'
+import { ProjectShowcase } from './components/ProjectShowcase.jsx'
+import { SalaryCalculator } from './components/SalaryCalculator.jsx'
+import { CareerTracksSection } from './components/CareerTracksSection.jsx'
 import aiCourseImage from './assets/courses/artificial-intelligence.webp'
 import bigDataCourseImage from './assets/courses/big-data-analytics.webp'
 import businessAnalyticsCourseImage from './assets/courses/business-analytics.webp'
 import dataAnalyticsCourseImage from './assets/courses/data-analytics.webp'
 import dataScienceCourseImage from './assets/courses/data-science.webp'
-import dataScienceGenAiCourseImage from './assets/courses/data-science-gen-ai.png'
+import dataScienceGenAiCourseImage from './assets/courses/data-science-gen-ai.jpg'
 import aboutHeroImage from './assets/about/aboutus.jpg'
 import journey2024Image from './assets/about/journey-2024.jpg'
 import coreInnovationImage from './assets/about/core-innovation.jpg'
@@ -179,7 +183,7 @@ const normalizePath = (path = '/') => {
   return normalized === '' ? '/' : normalized
 }
 
-const benefits = [
+const _benefits = [
   {
     icon: '◷',
     title: '24 × 7 Support',
@@ -379,12 +383,12 @@ function AboutPage({ onOpenDemoModal }) {
 }
 
 function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [_menuOpen, _setMenuOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState('All courses')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLevel, setSelectedLevel] = useState('all')
   const [sortBy, setSortBy] = useState('featured')
-  const closeMenu = () => setMenuOpen(false)
+  const _closeMenu = () => _setMenuOpen(false)
 
   const catalog = allCoursesData
   const categories = ['All courses', ...new Set(catalog.map((course) => course.category))]
@@ -659,6 +663,8 @@ function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal })
           </div>
         </section>
 
+        <CareerTracksSection onOpenDemoModal={() => onOpenDemoModal && onOpenDemoModal()} onOpenAdvisorModal={() => onOpenAdvisorModal && onOpenAdvisorModal()} />
+        <SalaryCalculator onOpenDemoModal={() => onOpenDemoModal && onOpenDemoModal()} onOpenAdvisorModal={() => onOpenAdvisorModal && onOpenAdvisorModal()} />
         <FaqSection onOpenDemoModal={onOpenDemoModal} />
       </main>
 
@@ -668,9 +674,9 @@ function CoursesPage({ onOpenCourseModal, onOpenDemoModal, onOpenAdvisorModal })
 }
 
 function WorkshopsPage({ onOpenDemoModal }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [_menuOpen, _setMenuOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState('All workshops')
-  const closeMenu = () => setMenuOpen(false)
+  const _closeMenu = () => _setMenuOpen(false)
   const categories = ['All workshops', ...new Set(workshops.map((workshop) => workshop.category))]
   const visibleWorkshops = activeCategory === 'All workshops'
     ? workshops
@@ -791,10 +797,10 @@ function WorkshopsPage({ onOpenDemoModal }) {
 }
 
 function BlogPage({ onOpenDemoModal }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [_menuOpen, _setMenuOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState('All articles')
   const [openArticle, setOpenArticle] = useState(null)
-  const closeMenu = () => setMenuOpen(false)
+  const _closeMenu = () => _setMenuOpen(false)
   const categories = ['All articles', ...new Set(blogPosts.map((post) => post.category))]
   const articlePosts = blogPosts.slice(1)
   const visiblePosts = activeCategory === 'All articles'
@@ -939,11 +945,11 @@ function BlogPage({ onOpenDemoModal }) {
 }
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [_menuOpen, _setMenuOpen] = useState(false)
   const [showMoreCourses, setShowMoreCourses] = useState(false)
   const [activeMoment, setActiveMoment] = useState(0)
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
+  const [email, _setEmail] = useState('')
+  const [_subscribed, setSubscribed] = useState(false)
 
   // Feature Modals State
   const [selectedCourseForModal, setSelectedCourseForModal] = useState(null)
@@ -967,7 +973,7 @@ function App() {
     return normalizePath(window.location.pathname)
   })
 
-  const closeMenu = () => setMenuOpen(false)
+  const _closeMenu = () => _setMenuOpen(false)
 
   useEffect(() => {
     const titles = {
@@ -1066,7 +1072,7 @@ function App() {
     }
   }, [])
 
-  function handleSubscribe(event) {
+  function _handleSubscribe(event) {
     event.preventDefault()
     if (!email.trim()) return
     setSubscribed(true)
@@ -1162,6 +1168,8 @@ function App() {
           </section>
 
           <OfficialUs onOpenDemoModal={() => openDemo()} />
+          <ProjectShowcase />
+          <SalaryCalculator onOpenDemoModal={() => openDemo()} onOpenAdvisorModal={() => openAdvisor()} />
 
 
           <section className="gallery-section section-pad">
@@ -1277,6 +1285,12 @@ function App() {
       )}
 
       {/* Quick Action Floating Controls (from sklassics.in) */}
+      {/* Quick Action Floating Controls (from sklassics.in) */}
+      <QuickAdvisorWidget
+        onOpenDemoModal={() => openDemo()}
+        onOpenAdvisorModal={() => openAdvisor()}
+        onOpenAssessmentModal={() => openAssessment()}
+      />
       <div className="home-quick-actions">
         <a
           href="tel:+919392732581"

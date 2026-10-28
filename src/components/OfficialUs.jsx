@@ -1,5 +1,5 @@
 import React from 'react'
-import certificateTemplate from '../assets/certificate-template.png'
+import certificateTemplate from '../assets/certificate-template.jpg'
 
 export function OfficialUs({ onOpenDemoModal }) {
   return (
@@ -73,6 +73,8 @@ export function OfficialUs({ onOpenDemoModal }) {
                   src={certificateTemplate}
                   alt="Sklassics course completion certificate template"
                   className="sk-us-cert-img"
+                  loading="lazy"
+                  decoding="async"
                   draggable="false"
                 />
 

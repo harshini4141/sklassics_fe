@@ -4,7 +4,7 @@ import businessAnalyticsCourseImage from '../assets/courses/business-analytics.w
 import cProgrammingCourseImage from '../assets/courses/c-programming.webp'
 import dataAnalyticsCourseImage from '../assets/courses/data-analytics.webp'
 import dataScienceCourseImage from '../assets/courses/data-science.webp'
-import dataScienceGenAiCourseImage from '../assets/courses/data-science-gen-ai.png'
+import dataScienceGenAiCourseImage from '../assets/courses/data-science-gen-ai.jpg'
 import dataScienceFullStackCourseImage from '../assets/courses/data-science-full-stack.webp'
 
 export const allCoursesData = [

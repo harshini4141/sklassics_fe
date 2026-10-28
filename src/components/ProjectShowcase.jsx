@@ -103,7 +103,7 @@ const PROJECTS = [
   },
 ]
 
-export function ProjectShowcase({ onOpenCourseModal }) {
+export function ProjectShowcase() {
   const [activeProjectId, setActiveProjectId] = useState('ai-agent')
   const activeProject = PROJECTS.find((p) => p.id === activeProjectId) || PROJECTS[0]
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import heroImg from '../assets/hero.png'
+import heroBgImg from '../assets/hero-cyber-bg.jpg'
 
 const tags = [
   'DevOps',
@@ -17,19 +17,19 @@ const tags = [
 export function OfficialHero({ onOpenDemoModal }) {
   return (
     <section id="home" className="hero-ai">
-      {/* Official Hero Art on right with soft left fade */}
-      <img
-        src={heroImg}
-        alt="AI and technology learning"
-        draggable="false"
-        className="hero-desktop-image hero-image-mask"
-      />
-
-      {/* Background Gradients & Ambient Glow */}
-      <div className="hero-content-fade" aria-hidden="true" />
-      <div className="hero-grid-lines" aria-hidden="true" />
-      <div className="hero-glow-blob blob-1" aria-hidden="true" />
-      <div className="hero-glow-blob blob-2" aria-hidden="true" />
+      {/* High-Definition Cybernetic & AI Background Banner */}
+      <div className="hero-bg-container" aria-hidden="true">
+        <img
+          src={heroBgImg}
+          alt=""
+          className="hero-bg-banner"
+          draggable="false"
+        />
+        <div className="hero-bg-scrim" />
+        <div className="hero-grid-lines" />
+        <div className="hero-glow-blob blob-1" />
+        <div className="hero-glow-blob blob-2" />
+      </div>
 
       {/* Main Hero Copy Content */}
       <div className="hero-shell">

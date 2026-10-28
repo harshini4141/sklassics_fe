@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.png'
+import logoDark from '../assets/logo-dark.png'
 import { ThemeToggle } from './ThemeToggle.jsx'
 
 export function OfficialNavbar({ currentPath = '/', onOpenDemoModal, onNavigate }) {
@@ -81,7 +82,8 @@ export function OfficialNavbar({ currentPath = '/', onOpenDemoModal, onNavigate 
               onClick={(e) => handleLinkClick(e, '/')}
               aria-label="Sklassics Home"
             >
-              <img src={logo} alt="Sklassics Logo" />
+              <img src={logo} alt="Sklassics Logo" className="sk-logo-light" />
+              <img src={logoDark} alt="Sklassics Logo" className="sk-logo-dark" />
             </a>
 
             {/* Desktop Navigation Links */}

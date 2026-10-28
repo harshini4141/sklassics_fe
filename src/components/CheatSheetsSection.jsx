@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { cheatSheetsData } from '../data/cheatSheetsData.js'
 
-export function CheatSheetsSection({ onOpenSheet, onOpenAssessment, onOpenDemo }) {
+export function CheatSheetsSection({ onOpenSheet, onOpenAssessment }) {
   const [activeCategory, setActiveCategory] = useState('All')
 
   const categories = [

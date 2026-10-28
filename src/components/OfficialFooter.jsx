@@ -23,10 +23,12 @@ const services = [
   { name: 'Online & Offline Tutoring', url: 'https://sklassicstutor.com/' },
 ]
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export function OfficialFooter({ onOpenDemoModal }) {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const year = new Date().getFullYear()
+  const year = CURRENT_YEAR
 
   const handleSubscribe = (e) => {
     e.preventDefault()
