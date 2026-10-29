@@ -22,6 +22,7 @@ import { QuickAdvisorWidget } from './components/QuickAdvisorWidget.jsx'
 import { ProjectShowcase } from './components/ProjectShowcase.jsx'
 import { SalaryCalculator } from './components/SalaryCalculator.jsx'
 import { CareerTracksSection } from './components/CareerTracksSection.jsx'
+import { AdminLeadsModal } from './components/AdminLeadsModal.jsx'
 import aiCourseImage from './assets/courses/artificial-intelligence.webp'
 import bigDataCourseImage from './assets/courses/big-data-analytics.webp'
 import businessAnalyticsCourseImage from './assets/courses/business-analytics.webp'
@@ -958,6 +959,7 @@ function App() {
   const [showAdvisorModal, setShowAdvisorModal] = useState(false)
   const [showAssessmentModal, setShowAssessmentModal] = useState(false)
   const [selectedCheatSheet, setSelectedCheatSheet] = useState(null)
+  const [showLeadsModal, setShowLeadsModal] = useState(false)
 
   const openCourse = (course) => setSelectedCourseForModal(course)
   const openDemo = (course = null) => {
@@ -1233,7 +1235,7 @@ function App() {
           <FaqSection onOpenDemoModal={() => openDemo()} />
         </main>
 
-        <OfficialFooter onOpenDemoModal={() => openDemo()} />
+        <OfficialFooter onOpenDemoModal={() => openDemo()} onOpenLeadsModal={() => setShowLeadsModal(true)} />
       </div>
     )
   }

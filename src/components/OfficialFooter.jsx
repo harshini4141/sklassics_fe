@@ -25,7 +25,7 @@ const services = [
 
 const CURRENT_YEAR = new Date().getFullYear()
 
-export function OfficialFooter({ onOpenDemoModal }) {
+export function OfficialFooter({ onOpenDemoModal, onOpenLeadsModal }) {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const year = CURRENT_YEAR
@@ -33,6 +33,13 @@ export function OfficialFooter({ onOpenDemoModal }) {
   const handleSubscribe = (e) => {
     e.preventDefault()
     if (!email.trim()) return
+    try {
+      const existing = JSON.parse(localStorage.getItem('sklassics_newsletter_subs') || '[]')
+      const entry = { email: email.trim(), subscribedAt: new Date().toISOString() }
+      localStorage.setItem('sklassics_newsletter_subs', JSON.stringify([entry, ...existing]))
+    } catch {
+      // ignore storage errors
+    }
     setSubscribed(true)
   }
 
@@ -160,6 +167,26 @@ export function OfficialFooter({ onOpenDemoModal }) {
             <a href="/#contact">Privacy Policy</a>
             <span className="sk-footer-sep">·</span>
             <span>Hyderabad, Telangana, India</span>
+            {onOpenLeadsModal && (
+              <>
+                <span className="sk-footer-sep">·</span>
+                <button
+                  type="button"
+                  onClick={onOpenLeadsModal}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#a96ab5',
+                    fontSize: '12.5px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    padding: 0,
+                  }}
+                >
+                  Admissions CRM
+                </button>
+              </>
+            )}
           </div>
 
           <div className="sk-footer-bottom-right">

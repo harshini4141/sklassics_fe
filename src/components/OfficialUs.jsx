@@ -1,7 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import certificateTemplate from '../assets/certificate-template.jpg'
 
+const CERT_PROGRAMS = [
+  'Data Science & Generative AI',
+  'Artificial Intelligence Engineering',
+  'Data Analytics & Power BI',
+  'Big Data Analytics & PySpark',
+  'Cloud Computing & DevOps',
+  'Full Stack Web Development',
+]
+
 export function OfficialUs({ onOpenDemoModal }) {
+  const [previewName, setPreviewName] = useState('')
+  const [previewProgram, setPreviewProgram] = useState(CERT_PROGRAMS[0])
+  const [verifyId, setVerifyId] = useState('')
+  const [verifyStatus, setVerifyStatus] = useState(null)
+
+  const handleVerify = (e) => {
+    e.preventDefault()
+    const clean = verifyId.trim().toUpperCase()
+    if (!clean) return
+    if (clean.startsWith('SK-') || clean.length >= 6) {
+      setVerifyStatus({
+        valid: true,
+        id: clean.startsWith('SK-') ? clean : `SK-CERT-${clean}`,
+        issuedBy: 'Sklassics Technologies Pvt Ltd (ISO 9001:2015)',
+      })
+    } else {
+      setVerifyStatus({
+        valid: false,
+        message: 'Enter a valid Sklassics ID (e.g., SK-CERT-2026)',
+      })
+    }
+  }
+
   return (
     <section className="sk-us-section" id="about-us">
       <div className="sk-us-container">
@@ -61,7 +93,7 @@ export function OfficialUs({ onOpenDemoModal }) {
             </div>
           </div>
 
-          {/* Right Certificate Showcase */}
+          {/* Right Certificate Showcase + Live Customizer */}
           <div className="sk-us-cert-col">
             <div className="sk-us-cert-wrapper">
               {/* Glowing Background Blob */}
@@ -79,11 +111,15 @@ export function OfficialUs({ onOpenDemoModal }) {
                 />
 
                 {/* Overlaid verified student details */}
-                <div className="sk-us-cert-overlay" aria-hidden="true">
+                <div className="sk-us-cert-overlay" aria-live="polite">
                   <p className="sk-cert-line-1">This is to certify that</p>
-                  <p className="sk-cert-name">[Your Full Name]</p>
-                  <p className="sk-cert-line-2">has successfully completed the industry program in</p>
-                  <p className="sk-cert-course">[Specialized IT Program]</p>
+                  <p className="sk-cert-name">
+                    {previewName.trim() ? previewName.trim() : '[Your Full Name]'}
+                  </p>
+                  <p className="sk-cert-line-2">
+                    has successfully completed the industry program in
+                  </p>
+                  <p className="sk-cert-course">{previewProgram}</p>
                   <p className="sk-cert-line-3">conducted by</p>
                   <p className="sk-cert-issuer">SKLASSICS TECHNOLOGIES PVT LTD</p>
                 </div>
@@ -91,6 +127,71 @@ export function OfficialUs({ onOpenDemoModal }) {
                 {/* Badge tags */}
                 <div className="sk-cert-tag-bottom">Course Completion Certificate</div>
                 <div className="sk-cert-tag-top">ISO 9001:2015 Verified</div>
+              </div>
+
+              {/* Interactive Certificate Customizer & Verifier Controls */}
+              <div className="sk-cert-customizer-box">
+                <div className="sk-cert-customizer-head">
+                  <span>✨ LIVE CERTIFICATE PREVIEWER</span>
+                  <small>Type your name to preview your credential</small>
+                </div>
+                <div className="sk-cert-inputs-row">
+                  <input
+                    type="text"
+                    placeholder="Type your full name..."
+                    value={previewName}
+                    onChange={(e) => setPreviewName(e.target.value)}
+                    maxLength={36}
+                    className="sk-cert-input"
+                    aria-label="Preview your name on certificate"
+                  />
+                  <select
+                    value={previewProgram}
+                    onChange={(e) => setPreviewProgram(e.target.value)}
+                    className="sk-cert-select"
+                    aria-label="Select program for certificate preview"
+                  >
+                    {CERT_PROGRAMS.map((prog) => (
+                      <option key={prog} value={prog}>
+                        {prog}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <form className="sk-cert-verify-row" onSubmit={handleVerify}>
+                  <input
+                    type="text"
+                    placeholder="Verify Credential ID (e.g. SK-CERT-2026)"
+                    value={verifyId}
+                    onChange={(e) => {
+                      setVerifyId(e.target.value)
+                      setVerifyStatus(null)
+                    }}
+                    className="sk-cert-input"
+                    aria-label="Enter certificate ID to verify"
+                  />
+                  <button type="submit" className="sk-cert-verify-btn">
+                    ✓ Verify ID
+                  </button>
+                </form>
+
+                {verifyStatus && (
+                  <div
+                    className={`sk-cert-verify-msg ${
+                      verifyStatus.valid ? 'valid' : 'invalid'
+                    }`}
+                  >
+                    {verifyStatus.valid ? (
+                      <span>
+                        ✅ Verified Active Credential <strong>{verifyStatus.id}</strong> ·{' '}
+                        {verifyStatus.issuedBy}
+                      </span>
+                    ) : (
+                      <span>⚠️ {verifyStatus.message}</span>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
